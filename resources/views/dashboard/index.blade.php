@@ -35,7 +35,22 @@
             </div>
         </div>
 
-        <div class="dashboard-card md:col-span-2 xl:col-span-1">
+        <div class="dashboard-card">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-sm font-medium text-slate-500">Total Anggota</p>
+                    <h2 class="mt-4 text-4xl font-bold text-slate-900">{{ $totalAnggota }}</h2>
+                    <p class="mt-2 text-sm text-slate-500">Jumlah anggota yang terdaftar.</p>
+                </div>
+                <div class="icon-badge icon-badge-indigo">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zm-9 13.5a6.75 6.75 0 0113.5 0" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card md:col-span-2 xl:col-span-3">
             <div class="flex items-start justify-between gap-4">
                 <div>
                     <p class="text-sm font-medium text-slate-500">Sambutan</p>

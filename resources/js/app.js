@@ -3,7 +3,9 @@ const modalOpenButtons = document.querySelectorAll('[data-modal-open]');
 const modalCloseButtons = document.querySelectorAll('[data-modal-close]');
 const modals = document.querySelectorAll('[data-modal]');
 const editButtons = document.querySelectorAll('[data-edit-book]');
+const editAnggotaButtons = document.querySelectorAll('[data-edit-anggota]');
 const editBookForm = document.getElementById('edit-book-form');
+const editAnggotaForm = document.getElementById('edit-anggota-form');
 const dropdowns = document.querySelectorAll('[data-dropdown]');
 const flashAlerts = document.querySelectorAll('[data-flash-alert]');
 const passwordToggleButtons = document.querySelectorAll('[data-password-toggle]');
@@ -62,9 +64,41 @@ const getBookDataFromDataset = (dataset) => {
     };
 };
 
+const fillAnggotaForm = (anggota) => {
+    if (! editAnggotaForm || ! anggota) {
+        return;
+    }
+
+    editAnggotaForm.action = anggota.update_url;
+
+    document.getElementById('edit_kode_anggota').value = anggota.kode_anggota ?? '';
+    document.getElementById('edit_nama').value = anggota.nama ?? '';
+    document.getElementById('edit_kelas').value = anggota.kelas ?? '';
+    document.getElementById('edit_jenis_kelamin').value = anggota.jenis_kelamin ?? '';
+    document.getElementById('edit_no_hp').value = anggota.no_hp ?? '';
+    document.getElementById('edit_alamat').value = anggota.alamat ?? '';
+};
+
+const getAnggotaDataFromDataset = (dataset) => {
+    if (! dataset) {
+        return null;
+    }
+
+    return {
+        update_url: dataset.updateUrl ?? '',
+        kode_anggota: dataset.kodeAnggota ?? '',
+        nama: dataset.nama ?? '',
+        kelas: dataset.kelas ?? '',
+        jenis_kelamin: dataset.jenisKelamin ?? '',
+        no_hp: dataset.noHp ?? '',
+        alamat: dataset.alamat ?? '',
+    };
+};
+
 deleteForms.forEach((form) => {
     form.addEventListener('submit', (event) => {
-        const confirmed = window.confirm('Yakin ingin menghapus data buku ini?');
+        const message = form.dataset.deleteMessage ?? 'Yakin ingin menghapus data buku ini?';
+        const confirmed = window.confirm(message);
 
         if (! confirmed) {
             event.preventDefault();
@@ -91,10 +125,21 @@ editButtons.forEach((button) => {
     });
 });
 
+editAnggotaButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        fillAnggotaForm(getAnggotaDataFromDataset(button.dataset));
+        openModal('edit-anggota-modal');
+    });
+});
+
 modals.forEach((modal) => {
     if (modal.dataset.openOnLoad === 'true') {
         if (modal.id === 'edit-book-modal') {
             fillEditForm(getBookDataFromDataset(modal.dataset));
+        }
+
+        if (modal.id === 'edit-anggota-modal') {
+            fillAnggotaForm(getAnggotaDataFromDataset(modal.dataset));
         }
 
         openModal(modal.id);

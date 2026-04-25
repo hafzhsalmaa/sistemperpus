@@ -34,6 +34,12 @@
                     </svg>
                     <span>Data Buku</span>
                 </a>
+                <a href="{{ route('anggota.index') }}" class="sidebar-link {{ request()->routeIs('anggota.*') ? 'sidebar-link-active' : '' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zm-9 13.5a6.75 6.75 0 0113.5 0M18.75 8.25a2.625 2.625 0 110 5.25m1.5 6.75a4.5 4.5 0 00-3-4.25" />
+                    </svg>
+                    <span>Data Anggota</span>
+                </a>
             </nav>
         </aside>
 

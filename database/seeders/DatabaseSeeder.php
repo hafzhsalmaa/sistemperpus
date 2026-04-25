@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Anggota;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -231,6 +232,55 @@ class DatabaseSeeder extends Seeder
             Book::updateOrCreate([
                 'kode_buku' => $book['kode_buku'],
             ], $book);
+        }
+
+        $anggota = [
+            [
+                'kode_anggota' => 'AG-001',
+                'nama' => 'Aulia Rahma',
+                'kelas' => '12 IPA 1',
+                'jenis_kelamin' => 'Perempuan',
+                'no_hp' => '081234567001',
+                'alamat' => 'Jl. Melati No. 12',
+            ],
+            [
+                'kode_anggota' => 'AG-002',
+                'nama' => 'Bima Pratama',
+                'kelas' => '12 IPA 2',
+                'jenis_kelamin' => 'Laki-laki',
+                'no_hp' => '081234567002',
+                'alamat' => 'Jl. Kenanga No. 8',
+            ],
+            [
+                'kode_anggota' => 'AG-003',
+                'nama' => 'Citra Lestari',
+                'kelas' => '11 IPS 1',
+                'jenis_kelamin' => 'Perempuan',
+                'no_hp' => '081234567003',
+                'alamat' => 'Jl. Mawar No. 5',
+            ],
+            [
+                'kode_anggota' => 'AG-004',
+                'nama' => 'Dimas Saputra',
+                'kelas' => '11 IPA 1',
+                'jenis_kelamin' => 'Laki-laki',
+                'no_hp' => '081234567004',
+                'alamat' => 'Jl. Cendana No. 10',
+            ],
+            [
+                'kode_anggota' => 'AG-005',
+                'nama' => 'Eka Wulandari',
+                'kelas' => '10 IPS 2',
+                'jenis_kelamin' => 'Perempuan',
+                'no_hp' => '081234567005',
+                'alamat' => 'Jl. Anggrek No. 3',
+            ],
+        ];
+
+        foreach ($anggota as $item) {
+            Anggota::updateOrCreate([
+                'kode_anggota' => $item['kode_anggota'],
+            ], $item);
         }
     }
 }

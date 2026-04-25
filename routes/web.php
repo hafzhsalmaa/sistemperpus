@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
@@ -20,5 +21,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('books', BookController::class)->except(['show', 'create', 'edit']);
+    Route::resource('anggota', AnggotaController::class)
+        ->parameters(['anggota' => 'anggota'])
+        ->except(['show', 'create', 'edit']);
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
